@@ -5,7 +5,13 @@ const promisemysql = require("promise-mysql");
 
 
 
-
+const connectionProperties ={
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: " ",
+    database: "middle_earthDB"
+}
 
 
 
@@ -13,16 +19,16 @@ const promisemysql = require("promise-mysql");
 //CONNECTION
 const connection = mysql.createConnection(connectionProperties);
 
-
+//connection to database
 connection.connect((err) => {
     if(err) throw err;
 });
 console.log("\n ONE RING TO RULE THEM ALL\n")
-mainMenu();
+middleEarth();
 
 
 
-function mainMenu(){
+function middleEarth(){
 
     // Prompt user to choose an option
     inquirer
@@ -34,7 +40,7 @@ function mainMenu(){
         "View all employees",
         "View all employees by role",
         "View all employees by department",
-        "View all employees by manager", //Nazgûl
+        "View all employees by manager", //The Nine Nazgûl
         "Add employee",
         "Add role",
         "Add department",
@@ -63,11 +69,11 @@ function mainMenu(){
                 break;
 
             case "Add employee":
-                addEmp();
+                addEmployee();
                 break;
 
             case "Add department":
-                addDept();
+                addDepartment();
                 break;
             case "Add role":
                 addRole();
