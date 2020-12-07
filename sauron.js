@@ -66,7 +66,7 @@ function middleEarth() {
                     break;
 
                 case "View all employees by role":
-                    viewAllEmpByRole();
+                    viewAllRoles();
                     break;
 
                 case "Add employee":
@@ -105,8 +105,21 @@ function middleEarth() {
 }
 function viewAllEmployees() {
     connection.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(e.first_name, ' ', e.lat_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;", function (err, res) {
-        if (err) throw err
-        console.table(res)
-        middleEarth()
+        if (err) throw err;
+        console.table(res);
+        middleEarth();
     })
+};
+function viewAllRoles(){
+connection.query("SELECT employee.first_name, employee.last_name, role.title AS Title FROM employee JOIN role ON employee.role_id =role.id;",
+function(err, res){
+    if(err) throw err;
+    console.table(res);
+    middleEarth();
+})
+};
+
+
+function viewAllEmpByDept(){
+
 }
