@@ -27,8 +27,6 @@ connection.connect((err) => {
 console.log("\n ONE RING TO RULE THEM ALL\n")
 middleEarth();
 
-
-
 function middleEarth() {
 
     // Prompt user to choose an option
@@ -39,7 +37,7 @@ function middleEarth() {
             message: "MAIN MENU",
             choices: [
                 "View all employees",
-                "View all employees by role",
+                "View all employees by role", //
                 "View all employees by department",
                 "View all employees by manager", //The Nine Nazgûl
                 "Add employee",
@@ -110,6 +108,7 @@ function viewAllEmployees() {
         middleEarth();
     })
 };
+
 function viewAllRoles(){
 connection.query("SELECT employee.first_name, employee.last_name, role.title AS Title FROM employee JOIN role ON employee.role_id =role.id;",
 function(err, res){

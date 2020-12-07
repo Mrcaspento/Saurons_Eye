@@ -35,7 +35,7 @@ INSERT INTO
 VALUE(4,"Sauron");
 
 
---employee role seeds--
+--employee role seeds-- --manager
 INSERT INTO role (title, powerlvl, department_id) --1--
 VALUE ("Wizard", 900, 1);
 INSERT INTO role (title, powerlvl, department_id)--2--
@@ -55,14 +55,17 @@ VALUE ("Uruk-hai", 19000, 4);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
 VALUE ("Frodo","Baggins", 1, 1);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("Arwen","Littleman", 2, 1);
+VALUE ("Saurman","Littleman", 4, 2);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("Nazgûl", 39500, 4, 1);
+VALUE ("Nazgûl","SnappyDwarf", 2, 3);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("Aragorn", 45000, 1);
+VALUE ("Aragorn","KingOfKings", 1, 4);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("Legolas", 39500 , 3);
+VALUE ("Legolas","Bloom", 3, 5);
 INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("Gandalf", 120000, 1);
-INSERT INTO role (first_name, last_name, manager_id, role_id)
-VALUE ("kili", 19000, 2);
+VALUE ("Gandalf","The Grey", 1, 6);
+
+
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
