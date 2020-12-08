@@ -71,10 +71,22 @@ function addDepartment() {
                 {
                     name: 'departments',
                     type: 'input',
-                    message: "what department would you like to add?"
+                    message: "what department would you like to add"
                 }
-            ]).then(res => {
+            ]).then(val => {
+                console.log(`adding ${val.departments} to the table`)
+                connection.query(
+                    "INSERT INTO departments SET ?", 
+                    {
+                        name: val.departments
 
+                    }, function(err) {
+                        if(err) throw err;
+                        console.table(val);
+                        console.log('ERROR 404....sike it worked')
+                        middleEarth();
+                    }
+                )
             })
     })
 };
