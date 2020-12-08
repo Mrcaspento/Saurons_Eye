@@ -92,11 +92,15 @@ function addDepartment() {
 };
 function viewAllEmployees(){
     connection.query('SELECT * FROM employees', function(err, val) {
-        console.log('\n Roles for middleEarth \n');
+        console.log('\n Employees for middleEarth \n');
         console.table(val);
     } )
 }
 function viewAllRoles(){
+    connection.query('SELECT * FROM roles', function(err, val){
+        console.log('\n Roles for middleEarth \n');
+        console.table(val);
+    })
 
 }
 function viewAllDepartments(){
