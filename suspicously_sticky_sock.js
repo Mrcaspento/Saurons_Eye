@@ -90,6 +90,15 @@ function addDepartment() {
             })
     })
 };
+function viewAllEmployees(){
+    connection.query('SELECT * FROM employees', function(err, val) {
+        console.log('\n Roles for middleEarth \n');
+        console.table(val);
+    } )
+}
+function viewAllRoles(){
+
+}
 function viewAllDepartments(){
     connection.query('SELECT * FROM departments', function(err, val){
         console.log('\n Departments for middleEarth \n');
