@@ -31,8 +31,8 @@ middleEarth = () => {
                 "View all employees by department",
                 "View all employees by manager", //The Nine Nazgûl
                 "Add employee",
-                "Add role",
-                "Add department",
+                "Add role",//finished
+                "Add department",//finished
                 "Update employee role"
             ]
         }).then((val) => {
@@ -90,7 +90,12 @@ function addDepartment() {
             })
     })
 };
-
+function viewAllDepartments(){
+    connection.query('SELECT * FROM departments', function(err, val){
+        console.log('\n Departments for middleEarth \n');
+        console.table(val);
+    })
+}
 function addRole() {
     connection.query('SELECT roles, roles.title AS Title, roles.powerlvl AS Powerlvl FROM roles,', function (err, res) {
         inquirer
@@ -158,7 +163,6 @@ function addEmployee() {
                     name: "Manager",
                     type: "list",
                     message: "Who is you manager?",
-                    choices: ["",]
                 }, {
                     name: "Role",
                     type: "choice",
