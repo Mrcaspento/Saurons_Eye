@@ -1,27 +1,27 @@
-DROP DATABASE IF EXISTS  uruk_hai_trackerDB;
-CREATE DATABASE uruk_hai_trackerDB;
-USE uruk_hai_trackerDB;
+DROP DATABASE IF EXISTS  uruk_haitrackerDB;
+CREATE DATABASE uruk_haitrackerDB;
 
--- Department --
-CREATE TABLE department(
+USE uruk_haitrackerDB;
+
+CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30)
 );
 
-CREATE TABLE role(
+CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30),
     powerlvl DECIMAL, -- salary --
     department_id INT,
     FOREIGN KEY (department_id) REFERENCES department(id)
 );
-CREATE TABLE employee(
+CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role_id INT,
     manager_id INT,
-    FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
+    FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE,
     FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE CASCADE
 );
 -- Department seeds--
