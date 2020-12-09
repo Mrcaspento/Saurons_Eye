@@ -1,6 +1,7 @@
 const inquirer = require("inquirer")
 const mysql = require("mysql");
 
+
 const connectionProperties = {
     host: "localhost",
     port: 3306,
@@ -29,11 +30,11 @@ middleEarth = () => {
                 "View all employees",//finished
                 "View all employees by role", //finshed
                 "View all employees by department",//finished
-                "View all employees by manager", //The Nine Nazgûl
                 "Add employee",//finished
                 "Add role",//finished
                 "Add department",//finished
-                "Update employee role"
+                "Update employee role",
+                "Toss the ring in to the volcano"//finihsed
             ]
         }).then((val) => {
             // Switch case depending on user option
@@ -63,6 +64,9 @@ middleEarth = () => {
                     break;
                 case "Update employee role":
                     updateEmployeeRole();
+                    break;
+                case "Toss the ring in to the volcano":
+                    endLotr();
                     break;
             }
         })
@@ -181,7 +185,7 @@ function addEmployee() {
                 },{
                     name: "Manager",
                     type: "input",
-                    message:"who manages this fool?",
+                    message:"who manages this fool?(number 1-4)",
                     
                 },{
                     name: "Role",
@@ -216,7 +220,7 @@ function addEmployee() {
                     {
                         first_name: val.FirstName,
                         last_name: val.LastName,
-                        role_id: val.Role,
+                        role_id: val.role,
                         manager_id: val.Manager
                     },
                     function (err) {
@@ -231,6 +235,8 @@ function addEmployee() {
 function updateEmployeeRole() {
     let allemployees = [];
     connection.query('SELECT * FROM employees', function (err, val) {
+        if(err) throw err;
+        const roleTable = val.map(role => {return {name: role.title, val: role.id}})
         for (var i = 0; i < val.length; i++) {
             let updateEmployee =
                 val[i].id + " " + val[i].first_name + " " + val[i].last_name;
@@ -273,7 +279,11 @@ function updateEmployeeRole() {
                         break;
                 }
                 console.log(`Changing to ${val.newEmployeeRole} role..\n`);
-                connection.query("UPDATE employees SET role_id = ? WHERE id = ?",function(err){
+                connection.query("UPDATE employees SET role_id = ? WHERE id = ?",[
+                    {
+                        role_id: val.role
+                    },
+                ],function(err){
                     if(err) throw err
                     console.table(val);
                     middleEarth();
@@ -281,9 +291,9 @@ function updateEmployeeRole() {
             }
             )
     })
-
-
-
 }
-
+endLotr = () => {
+    connection.end()
+    console.log("YOU WILL PERISH HOBBIT!!!")
+}
 module.exports = middleEarth();
