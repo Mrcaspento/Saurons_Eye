@@ -279,11 +279,10 @@ function updateEmployeeRole() {
                         break;
                 }
                 console.log(`Changing to ${val.newEmployeeRole} role..\n`);
-                connection.query("UPDATE employees SET role_id = ? WHERE id = ?",[
-                    {
-                        role_id: val.role
-                    },
-                ],function(err){
+                connection.query({
+                    sql: "UPDATE employees SET role_id = ? WHERE id = ?",
+                    values: [val.newEmployeeRole, val.updateEmployee  ]
+                },function(err){
                     if(err) throw err
                     console.table(val);
                     middleEarth();
